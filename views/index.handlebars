@@ -1,0 +1,72 @@
+
+<center>
+  <h1>Eat-Da-Burger!</h1>
+</center>
+<br>
+<br>
+
+<div class="row">
+  <center>
+    <!-- Left side (Burgers Available) -->
+    <div class="col-md-4">
+      <h3 class="submitFont">Burgers Available</h3>
+      <div id="burgersAvailable">
+
+        <!-- Dynamically Add User Burgers Here -->
+        {{#each burgers}} {{#unless devoured}}
+        <form action="burgers/{{id}}" method="POST">
+          <div class="input-group">
+            <li class="form-control">{{id}}. {{burger_name}}</li>
+            <span class="input-group-btn">
+              <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+            </span>
+          </div>
+        </form>
+        {{/unless}} {{/each}}
+
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+
+    <!-- Right side (Burgers Devoured) -->
+    <div class="col-md-4">
+      <h3 class="submitFont">Burgers Devoured</h3>
+      <div id="alreadyEaten">
+
+        <!-- Dynamically Insert Devoured Burgers Here -->
+        {{#each burgers}} {{#if this.devoured}}
+        <div class="input-group">
+          <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+        </div>
+        {{/if}} {{/each}}
+
+      </div>
+    </div>
+  </center>
+</div>
+<br>
+<br>
+<center>
+  <h2>Add A Burger Option</h2>
+
+  <div class="row">
+    <div class="col s12">
+      <form action="/burgers" method="POST">
+        <input type="text" id="name" name="burger_name" placeholder="Uber Delicious Burger">
+        <button type="submit" class="addBurgerButton">Add The Burger</button>
+      </form>
+    </div>
+  </div>
+</center>
+<!--<form action="/burgers/{{this.id}}" method="POST">
+  <div class="input-group">
+    <li class="form-control">{{id}}.{{burger_name}}</li>
+    <span class="input-group-btn">
+      <button class="btn btn-success devour-button" type="submit">Devour It!</button>
+    </span>
+  </div>
+</form>
+
+
+-->
